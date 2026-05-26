@@ -28,7 +28,7 @@ body {
 }
 
 /* =========================================
-   BARRA DE NAVEGAÇÃO (Menu Superior)
+   BARRA DE NAVEGAÇÃO (Menu Estilo Ilha Flutuante)
    ========================================= */
 #menu {
     display: flex;
@@ -36,13 +36,34 @@ body {
     align-items: center;
     background-color: var(--cor-fundo-card);
     padding: 1rem 3rem;
-    border-bottom: 1px solid var(--cor-borda);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* MODIFICAÇÕES PARA O EFEITO DE ILHA */
+    border: 1px solid var(--cor-borda);     /* Borda em toda a volta do menu */
+    border-radius: 8px;                     /* Cantos arredondados para parecer um card */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Sombra mais marcante para dar profundidade */
+    
+    /* POSICIONAMENTO FIXO CENTRALIZADO COM ESPAÇAMENTO */
+    position: fixed;
+    top: 20px;                              /* Distância do topo da tela */
+    left: 0;
+    right: 0;
+    width: calc(100% - 40px);               /* Ocupa a largura total menos os espaços das laterais */
+    max-width: 1200px;                      /* Não passa de 1200px de largura */
+    margin: 0 auto;                         /* Centraliza o menu na tela horizontalmente */
+    z-index: 1000;                          /* Continua passando por cima do conteúdo */
+}
+
+/* =========================================
+   TÍTULO PRINCIPAL (Ajuste de margem)
+   ========================================= */
+#titulo {
+    text-align: center;
+    /* Aumentamos para 9.5rem para compensar os 20px que o menu desceu */
+    margin: 9.5rem 0 1.5rem 0;
 }
 
 #logo i {
-    height: 40px; 
-    width: 60px;
+    font-size: 1.5rem; /* Ajustado para o ícone alinhar perfeitamente */
     display: block;
 }
 
@@ -82,13 +103,6 @@ body {
     background-color: var(--cor-primaria-hover);
 }
 
-/* =========================================
-   TÍTULO PRINCIPAL (Heading 1)
-   ========================================= */
-#titulo {
-    text-align: center;
-    margin: 3rem 0 1.5rem 0;
-}
 
 #titulo h1 {
     font-size: 2.5rem;
@@ -97,21 +111,21 @@ body {
 }
 
 /* =========================================
-   CONTEÚDO E ESTRUTURA GRID (Igual ao Layout)
+   CONTEÚDO E ESTRUTURA GRID
    ========================================= */
 #conteudo {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide a tela em duas colunas iguais */
-    gap: 3rem;                     /* Espaçamento entre os blocos */
+    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    gap: 3rem;                     
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
 }
 
-/* Lado Esquerdo: Imagem expandida verticalmente */
+/* Lado Esquerdo: Imagem expandida */
 #img {
     grid-column: 1;
-    grid-row: 1 / span 2; /* Faz a imagem ocupar o espaço das duas caixas da direita */
+    grid-row: 1 / span 2; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,11 +138,11 @@ body {
 #img img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Preenche o bloco sem distorcer */
-    min-height: 400px;  /* Altura mínima garantida para o visual */
+    object-fit: cover; 
+    min-height: 400px;  
 }
 
-/* Lado Direito: Caixas de Texto organizadas em linhas */
+/* Lado Direito: Caixas de Texto */
 #caixa1, #caixa2 {
     background-color: var(--cor-fundo-card);
     padding: 2rem;
@@ -137,7 +151,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 #caixa1 {
@@ -150,10 +163,9 @@ body {
     grid-row: 2;
 }
 
-/* Estilização dos textos das caixas */
 #caixa1 h1, #caixa2 h1 {
     font-size: 1.6rem;
-    color: var(--cor-primaria); /* Destaque em laranja nos títulos internos */
+    color: var(--cor-primaria); 
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -165,7 +177,7 @@ body {
 }
 
 /* =========================================
-   RESPONSIVIDADE (Telas Menores)
+   RESPONSIVIDADE (Telas Menores / Celulares)
    ========================================= */
 @media (max-width: 900px) {
     #menu {
@@ -175,18 +187,32 @@ body {
     #botoes {
         gap: 1.2rem;
     }
+    
+    #botoes a {
+        font-size: 0.85rem;
+    }
+
+    #sair button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    #titulo {
+        margin-top: 6.5rem; /* Ajusta a margem do título em telas menores */
+    }
 
     #conteudo {
-        grid-template-columns: 1fr; /* No tablet/celular, vira uma coluna só */
+        grid-template-columns: 1fr; /* Vira uma coluna única */
+        gap: 2rem;
     }
 
     #img {
         grid-column: 1;
-        grid-row: auto; /* Desfaz o empilhamento lateral */
+        grid-row: auto; 
     }
     
     #img img {
-        height: 300px; /* Reduz o tamanho da imagem no mobile */
+        height: 300px; 
     }
 
     #caixa1, #caixa2 {

@@ -26,16 +26,18 @@ body {
     color: var(--cor-texto-principal);
     min-height: 100vh;
     
-    /* Flexbox no body ajuda a centralizar o formulário na tela */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1rem;
+    
+    /* ALTERAÇÃO: Aumentamos o padding do topo para criar o espaço 
+       perfeito para o seu menu fixo (ilha) sem precisar de margens malucas */
+    padding: 8rem 1rem 3rem 1rem; 
 }
 
 /* =========================================
-   BARRA DE NAVEGAÇÃO (Menu Superior Flutuante)
+   BARRA DE NAVEGAÇÃO (Menu Estilo Ilha Flutuante)
    ========================================= */
 #menu {
     display: flex;
@@ -43,19 +45,34 @@ body {
     align-items: center;
     background-color: var(--cor-fundo-card);
     padding: 1rem 3rem;
-    border-bottom: 1px solid var(--cor-borda);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     
-    /* Configuração para o menu ficar fixo no topo */
+    /* MODIFICAÇÕES PARA O EFEITO DE ILHA */
+    border: 1px solid var(--cor-borda);     /* Borda em toda a volta do menu */
+    border-radius: 8px;                     /* Cantos arredondados para parecer um card */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Sombra mais marcante para dar profundidade */
+    
+    /* POSICIONAMENTO FIXO CENTRALIZADO COM ESPAÇAMENTO */
     position: fixed;
-    top: 0;
+    top: 20px;                              /* Distância do topo da tela */
     left: 0;
-    width: 100%;
-    z-index: 1000;
+    right: 0;
+    width: calc(100% - 40px);               /* Ocupa a largura total menos os espaços das laterais */
+    max-width: 1200px;                      /* Não passa de 1200px de largura */
+    margin: 0 auto;                         /* Centraliza o menu na tela horizontalmente */
+    z-index: 1000;                          /* Continua passando por cima do conteúdo */
+}
+
+/* =========================================
+   TÍTULO PRINCIPAL (Ajuste de margem)
+   ========================================= */
+#titulo {
+    text-align: center;
+    /* ALTERAÇÃO: Removido o margin-top de 9.5rem que estava esticando o card */
+    margin: 0 0 1.5rem 0; 
 }
 
 #logo i {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Ajustado para o ícone alinhar perfeitamente */
     display: block;
 }
 
@@ -95,6 +112,13 @@ body {
     background-color: var(--cor-primaria-hover);
 }
 
+
+#titulo h1 {
+    font-size: 2.5rem;
+    color: var(--cor-texto-principal);
+    font-weight: 700;
+}
+
 /* =========================================
    CAIXA DO FORMULÁRIO (Centralizada)
    ========================================= */
@@ -104,11 +128,15 @@ body {
     border-radius: 8px;
     border: 1px solid var(--cor-borda);
     width: 100%;
-    max-width: 500px; /* Largura máxima ideal para o card */
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     
-    /* Margem do topo para compensar o menu fixo e não cobrir o form */
-    margin-top: 6rem; 
+    /* ALTERAÇÃO: Força a altura a se adaptar EXATAMENTE ao conteúdo */
+    height: auto; 
+    /* ALTERAÇÃO: Removido o margin-top de 6rem */
+    margin-top: 0; 
 }
 
 #titulo h1 {
